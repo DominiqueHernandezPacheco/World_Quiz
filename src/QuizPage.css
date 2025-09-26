@@ -1,0 +1,222 @@
+/* ======================================================= */
+/* TEMA FINAL ESTÉTICO ("COSMIC TEAL & GOLD")              */
+/* ======================================================= */
+
+/* --- 1. FUENTE Y PALETA DE COLORES CENTRALIZADA --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* La paleta de colores completa está aquí. ¡Fácil de modificar! */
+:root {
+  --color-background: #0D1117; /* Un azul muy oscuro, casi negro */
+  --color-card-bg: rgba(22, 27, 34, 0.6); /* Un vidrio más oscuro y sutil */
+  --color-card-border: rgba(139, 148, 158, 0.2);
+  --color-accent-primary: #30C5BF; /* Turquesa vibrante */
+  --color-accent-secondary: #F2B857; /* Dorado para detalles */
+  --color-text-primary: #E6EDF3; /* Un blanco más suave */
+  --color-text-on-accent: #0D1117; /* Texto oscuro para fondos claros */
+  --color-correct: #27AE60; /* Un verde más moderno */
+  --color-incorrect: #C0392B; /* Un rojo menos agresivo */
+}
+
+.quiz-page {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-text-primary);
+}
+
+/* --- CONTENEDOR DEL QUIZ --- */
+.quiz-container {
+  background: var(--color-card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 15px;
+  padding: 10vh;
+  margin-top: 5vh;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--color-card-border);
+}
+
+/* --- BARRA DE PROGRESO --- */
+.number-question {
+  display: flex;
+  gap: 2.5vh;
+  margin-bottom: 2vh;
+}
+
+.question-section {
+  background-color: rgba(230, 237, 243, 0.1);
+  border: 1px solid var(--color-card-border);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Pregunta activa resalta en turquesa */
+.question-section.active {
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
+  font-weight: bold;
+  transform: scale(1.1);
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 15px rgba(48, 197, 191, 0.5);
+}
+
+/* Preguntas respondidas se marcan en dorado */
+.question-section.answered {
+  background: var(--color-accent-secondary);
+  color: var(--color-text-on-accent);
+  border-color: var(--color-accent-secondary);
+}
+
+/* --- PREGUNTA Y BANDERA --- */
+.country-question {
+  margin: 2vh 0 2vh;
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.flag-container {
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2vh;
+}
+
+.flag-image {
+  width: 100px;
+  height: auto;
+  object-fit: cover;
+  border: 2px solid #fff;
+  border-radius: 8px;
+}
+
+/* --- BOTONES DE RESPUESTA --- */
+.posible-answers {
+  margin: 2vh 0 2vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.posible-answers button {
+  background: rgba(230, 237, 243, 0.05);
+  border: 1px solid var(--color-card-border);
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 12px;
+  color: var(--color-text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.option-letter {
+  background-color: rgba(230, 237, 243, 0.1);
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover con acento turquesa */
+.posible-answers button:hover:not(:disabled) {
+  border-color: var(--color-accent-primary);
+  background: rgba(48, 197, 191, 0.1);
+  transform: translateY(-2px);
+}
+.posible-answers button:hover:not(:disabled) .option-letter {
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
+}
+
+/* Estados de Correcto / Incorrecto */
+.posible-answers button.correct {
+  background: rgba(39, 174, 96, 0.2);
+  border-color: var(--color-correct);
+  color: #ffffff;
+  animation: correct-pulse 0.6s ease;
+}
+.posible-answers button.correct .option-letter {
+  background-color: var(--color-correct);
+  color: white;
+}
+
+.posible-answers button.incorrect {
+  background: rgba(192, 57, 43, 0.2);
+  border-color: var(--color-incorrect);
+  color: #ffffff;
+  animation: incorrect-shake 0.5s ease;
+}
+.posible-answers button.incorrect .option-letter {
+  background-color: var(--color-incorrect);
+  color: white;
+}
+
+
+/* --- BOTÓN DE SIGUIENTE --- */
+.next-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2vh;
+}
+
+.next-button-container button {
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.next-button-container button:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(48, 197, 191, 0.5);
+}
+
+.next-button-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes correct-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+@keyframes incorrect-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
